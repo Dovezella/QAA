@@ -1,0 +1,23 @@
+	/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2 --runMode genomeGenerate --runThreadN 8 --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29 --genomeFastaFiles /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa --sjdbGTFfile /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf
+	STAR version: 2.7.10b   compiled: 2023-05-25T06:56:23+0000 :/opt/conda/conda-bld/star_1684997536154/work/source
+Sep 11 15:19:48 ..... started STAR run
+Sep 11 15:19:48 ... starting to generate Genome files
+Sep 11 15:20:25 ..... processing annotations GTF
+Sep 11 15:20:45 ... starting to sort Suffix Array. This may take a long time...
+Sep 11 15:20:54 ... sorting Suffix Array chunks and saving them to disk...
+Sep 11 15:29:48 ... loading chunks from disk, packing SA...
+Sep 11 15:30:46 ... finished generating suffix array
+Sep 11 15:30:46 ... generating Suffix Array index
+Sep 11 15:33:05 ... completed Suffix Array index
+Sep 11 15:33:05 ..... inserting junctions into the genome indices
+Sep 11 15:35:28 ... writing Genome to disk ...
+Sep 11 15:35:29 ... writing Suffix Array to disk ...
+Sep 11 15:35:41 ... writing SAindex to disk
+Sep 11 15:35:42 ..... finished successfully
+	/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2 --runThreadN 8 --runMode alignReads --outFilterMultimapNmax 3 --outSAMunmapped Within KeepPairs --alignIntronMax 1000000 --alignMatesGapMax 1000000 --readFilesCommand zcat --readFilesIn /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq_trimP.fastq.gz --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29 --outFileNamePrefix aligned
+	STAR version: 2.7.10b   compiled: 2023-05-25T06:56:23+0000 :/opt/conda/conda-bld/star_1684997536154/work/source
+Sep 11 15:35:42 ..... started STAR run
+Sep 11 15:35:42 ..... loading genome
+Sep 11 15:35:49 ..... started mapping
+Sep 11 15:36:21 ..... finished mapping
+Sep 11 15:36:22 ..... finished successfully

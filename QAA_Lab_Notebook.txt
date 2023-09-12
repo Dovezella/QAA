@@ -1,0 +1,847 @@
+Lab Notebook:  
+Bi623:
+QAA
+Dove Enicks
+
+github for this assignment:  https://github.com/Dovezella/QAA.git
+my assigned files(two of each for read 1 and 2):  11_2H_both_S9_L008      29_4E_fox_S21_L008
+located here:
+```/projects/bgmp/shared/2017_sequencing/demultiplexed/```
+
+to initiate fastqc:
+
+```
+module spider fastqc
+module load fastqc/0.11.5
+ml
+```
+while in the module I created a folder for both paired end files so I could output their files to each one:
+```
+mkdir 11_2H_both_S9_L008_R1
+mkdir 11_2H_both_S9_L008_R2
+mkdir 29_4E_fox_S21_L008_R1
+mkdir 29_4E_fox_S21_L008_R2
+```
+
+Then to output:
+```
+/usr/bin/time - v fastqc -o 11_2H_both_S9_L008_R1/ /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R1_001.fastq.gz 
+/usr/bin/time - v fastqc -o 11_2H_both_S9_L008_R2/ /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R2_001.fastq.gz
+/usr/bin/time - v fastqc -o 29_4E_fox_S21_L008_R1/ /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R1_001.fastq.gz
+/usr/bin/time - v fastqc -o 29_4E_fox_S21_L008_R2/ /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R2_001.fastq.gz  
+```
+Results of timing for 11_2H_both_S9_L008_R1
+```
+        User time (seconds): 92.12
+        System time (seconds): 3.44
+        Percent of CPU this job got: 98%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 1:36.91
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 200220
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 3
+        Minor (reclaiming a frame) page faults: 258710
+        Voluntary context switches: 9014
+        Involuntary context switches: 2637
+        Swaps: 0
+        File system inputs: 19208
+        File system outputs: 1936
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0"
+```
+
+I made sure to download these folders onto my own computer with a scp command to my local file structure 
+```
+//wsl.localhost/Ubuntu/home/dovee/bioinfo/Bi623/QAA/QAA
+```
+We can see in the per base N content graphs, none of these graphs indicate the presence of any N bases, which is further confirmed by the per base seq quality score graphs which all have high enough quality scores to be able to make a good quality, confident base call.
+
+In order to compare my previous coding for creating the same kind of graphs for per base seq quality histrogram from Bi622, Demux, Assignment the First:
+I have copied and updated the python code and scripts to be used for two read pairs of fastqc data.
+Locations/Names:
+```
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/fastq_pairs_base_qual_hist.sh
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/baseq_hist.py
+```
+Commands used to generate per base sequence quality historgrams with job returned:
+```
+sbatch ../fastq_pairs_base_qual_hist.sh  /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R1_001.fastq.gz /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R2_001.fastq.gz 11_2H_both_S9_L008_Read1 11_2H_both_S9_L008_Read
+2
+Submitted batch job 49482
+sbatch ../fastq_pairs_base_qual_hist.sh  /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R1_001.fastq.gz /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R2_001.fastq.gz 29_4E_fox_S21_L008_Read1 29_4E_fox_S21_L008_Read2
+Submitted batch job 49477
+```
+From Read One for 11_2H_both_S9_L008 the job err reported:
+```
+	User time (seconds): 294.88
+	System time (seconds): 0.89
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:56.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 66140
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 32620
+	Voluntary context switches: 485
+	Involuntary context switches: 158242
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+```
+Part 1 Questions 2 & 3 combined:
+From comparisons of the charts which can be found:
+```
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_R2/11_2H_both_S9_L008_R2_001_fastqc/Images/per_base_quality.png
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/R2.png
+```
+You can see from the line of the means, that they follow almost exactly the same distribution from what my eyes can discern. The biggest difference is that the fastqc delivers a plot with more information including boxplots on top of the histogram.
+As for the runtime, the fastqc module is about 3 times as fast as my python script. I imagine this could be due to my coding being less elegant and possibly not using the best data structures.
+Fastqc seems to be more informative and efficient due to its programming, which I am unable to look into, but I wonder if the fact that is a module helps it to be more powerful as well.
+
+We see that for the 11_2H_both_S9_L008 reads, the per base quality plots show data that is on average and with most of the data for each base call being of a quality score above 32.
+Also if we look at the other plots that are created, there is no adapter contamination, duplication levels are as to be expected for RNAseq data, n content is relatively absent, gc content follows a normal distribution, and there do seem to be some tile errors, but an acceptable amount that can be corrected.
+The data is all of an expected size of 101 bp.
+So for these two read pairs I would reccommend that this is high-quality data that can be further used.
+As for the 29_4E_fox_S21_L008 read pairs, read one has really consisent and good quality scores above 36 almost entirely throughout without too much variation.
+Read two has more variation with some of the 10th percentiles dipping towards a qscore of 20, but overall most of the data is a high quality call above score of 32-35.
+These two reads do have slightly higher levels of adapter content towards the end of the reads, but it doesn't seem to have been too much or made a huge impact on quality.
+The quality is most likely affected by processing time and degeneration. You can see that all the graphs check out similarly to the other 11_2H_both_S9_L008 read pairs, but there are more tiles with errors on them in this read 2.
+Overall, I would say this data is within acceptable, high-quality range for us to be able to take it further for processing.
+
+Part2: 
+I created an environment in talapas called QAA and installed cutadapt and trimmomatic
+```
+mamba create -n QAA
+mamba install cutadapt
+mamba install trimmomatic
+cutadapt --version
+trimmomatic -version 
+```
+cutapadt version is 4.4
+trimmomatic is version 0.39
+
+General cutadapt format for read-end pairs:
+cutadapt -a ADAPT1 -A ADAPT2 [options] -o out1.fastq -p out2.fastq in1.fastq in2.fastq
+
+in order to use cutadapt on my files with adapters:
+    R1: ```AGATCGGAAGAGCACACGTCTGAACTCCAGTCA```
+    
+    R2: ```AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT```
+
+For 11_2H_both_S9_L008 read pairs, I made a directory for the output @ :
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut
+```
+mkdir cut
+cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT -o /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_cut_R1.fastq -p /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_cut_R2.fastq /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R1_001.fastq.gz /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R2_001.fastq.gz
+```
+OUTPUT:
+Processing paired-end reads on 1 core ...
+Done           00:01:48    17,919,193 reads @   6.0 µs/read;   9.94 M reads/minute
+Finished in 108.158 s (6.036 µs/read; 9.94 M reads/minute).
+=== Summary ===
+
+Total read pairs processed:         17,919,193
+  Read 1 with adapter:                 874,706 (4.9%)
+  Read 2 with adapter:               1,016,991 (5.7%)
+Pairs written (passing filters):    17,919,193 (100.0%)
+
+Total basepairs processed: 3,619,676,986 bp
+  Read 1: 1,809,838,493 bp
+  Read 2: 1,809,838,493 bp
+Total written (filtered):  3,602,949,169 bp (99.5%)
+  Read 1: 1,801,756,130 bp
+  Read 2: 1,801,193,039 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA; Type: regular 3'; Length: 33; Trimmed: 874706 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 22.2%
+  C: 28.5%
+  G: 29.5%
+  T: 19.4%
+  none/other: 0.4%
+
+Overview of removed sequences
+length  count   expect  max.err error counts
+3       351942  279987.4        0       351942
+4       97526   69996.8 0       97526
+5       45688   17499.2 0       45688
+6       30919   4374.8  0       30919
+7       28145   1093.7  0       28145
+8       25999   273.4   0       25999
+9       24403   68.4    0       24011 392
+10      22809   17.1    1       21917 892
+11      21290   4.3     1       20522 768
+12      19776   1.1     1       19158 618
+13      18174   0.3     1       17534 640
+14      16544   0.1     1       15922 622
+15      15492   0.0     1       14876 616
+16      14410   0.0     1       13809 601
+17      13247   0.0     1       12710 537
+18      12059   0.0     1       11527 520 12
+19      11062   0.0     1       10550 487 25
+20      9837    0.0     2       9334 437 66
+21      9212    0.0     2       8723 436 53
+22      8303    0.0     2       7788 439 76
+23      7371    0.0     2       6952 363 56
+24      6635    0.0     2       6207 361 67
+25      6074    0.0     2       5680 347 47
+26      5477    0.0     2       5097 339 41
+27      4914    0.0     2       4594 277 41 2
+28      4499    0.0     2       4202 246 46 5
+29      4076    0.0     2       3812 228 30 6
+30      3599    0.0     3       3323 238 31 7
+31      3136    0.0     3       2900 194 29 13
+32      2855    0.0     3       2626 181 37 11
+33      2536    0.0     3       2357 144 26 9
+34      2322    0.0     3       2143 149 14 16
+35      2049    0.0     3       1896 127 19 7
+36      1869    0.0     3       1738 104 19 8
+37      1663    0.0     3       1553 83 14 13
+38      1596    0.0     3       1447 126 16 7
+39      1387    0.0     3       1276 85 19 7
+40      1216    0.0     3       1125 73 12 6
+41      1032    0.0     3       942 76 11 3
+42      955     0.0     3       884 58 8 5
+43      894     0.0     3       838 45 10 1
+44      805     0.0     3       744 47 9 5
+45      672     0.0     3       628 38 5 1
+46      606     0.0     3       563 32 9 2
+47      613     0.0     3       571 31 10 1
+48      579     0.0     3       537 35 6 1
+49      493     0.0     3       463 25 4 1
+50      476     0.0     3       441 20 8 7
+51      418     0.0     3       388 22 6 2
+52      323     0.0     3       300 19 4
+53      304     0.0     3       283 16 3 2
+54      280     0.0     3       256 18 5 1
+55      252     0.0     3       239 10 3
+56      225     0.0     3       205 17 2 1
+57      218     0.0     3       210 7 1
+58      200     0.0     3       178 17 3 2
+59      174     0.0     3       161 10 2 1
+60      162     0.0     3       149 8 3 2
+61      131     0.0     3       119 10 1 1
+62      114     0.0     3       104 8 1 1
+63      104     0.0     3       94 10
+64      102     0.0     3       92 5 3 2
+65      95      0.0     3       88 1 5 1
+66      77      0.0     3       73 2 2
+67      60      0.0     3       56 2 0 2
+68      58      0.0     3       48 7 2 1
+69      49      0.0     3       46 3
+70      41      0.0     3       33 5 1 2
+71      32      0.0     3       28 3 0 1
+72      24      0.0     3       20 1 3
+73      22      0.0     3       17 2 1 2
+74      23      0.0     3       20 3
+75      10      0.0     3       8 2
+76      12      0.0     3       10 2
+77      16      0.0     3       12 2 1 1
+78      12      0.0     3       10 1 1
+79      10      0.0     3       8 1 0 1
+80      4       0.0     3       4
+81      5       0.0     3       5
+82      12      0.0     3       11 1
+83      8       0.0     3       7 1
+84      4       0.0     3       4
+85      8       0.0     3       7 1
+86      5       0.0     3       5
+87      9       0.0     3       5 3 1
+88      4       0.0     3       4
+89      4       0.0     3       3 1
+90      4       0.0     3       3 0 1
+91      7       0.0     3       7
+92      2       0.0     3       2
+93      3       0.0     3       2 1
+94      2       0.0     3       2
+96      6       0.0     3       6
+97      2       0.0     3       2
+98      2       0.0     3       2
+99      3       0.0     3       2 1
+101     3828    0.0     3       5 3416 365 42
+
+
+=== Second read: Adapter 2 ===
+
+Sequence: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT; Type: regular 3'; Length: 33; Trimmed: 1016991 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 24.0%
+  C: 31.0%
+  G: 30.1%
+  T: 14.6%
+  none/other: 0.4%
+
+Overview of removed sequences
+length  count   expect  max.err error counts
+3       461421  279987.4        0       461421
+4       119823  69996.8 0       119823
+5       49898   17499.2 0       49898
+6       32417   4374.8  0       32417
+7       28362   1093.7  0       28362
+8       26331   273.4   0       26331
+9       24781   68.4    0       24207 574
+10      23249   17.1    1       22122 1127
+11      21683   4.3     1       20829 854
+12      19993   1.1     1       19433 560
+13      18286   0.3     1       17836 450
+14      16672   0.1     1       16265 407
+15      15597   0.0     1       15113 484
+16      14513   0.0     1       14092 421
+17      13356   0.0     1       12917 439
+18      12140   0.0     1       11655 483 2
+19      11129   0.0     1       10713 408 8
+20      9890    0.0     2       9462 366 62
+21      9260    0.0     2       8907 308 45
+22      8354    0.0     2       7976 333 45
+23      7430    0.0     2       7089 300 41
+24      6687    0.0     2       6330 313 44
+25      6128    0.0     2       5826 258 44
+26      5523    0.0     2       5203 273 47
+27      4951    0.0     2       4696 225 29 1
+28      4552    0.0     2       4285 227 39 1
+29      4136    0.0     2       3883 208 40 5
+30      3651    0.0     3       3390 207 42 12
+31      3210    0.0     3       2901 239 45 25
+32      2901    0.0     3       2691 159 36 15
+33      2601    0.0     3       2420 122 43 16
+34      2371    0.0     3       2215 115 29 12
+35      2093    0.0     3       1932 125 20 16
+36      1905    0.0     3       1781 96 16 12
+37      1708    0.0     3       1570 105 18 15
+38      1655    0.0     3       1539 86 16 14
+39      1435    0.0     3       1324 92 11 8
+40      1264    0.0     3       1168 65 20 11
+41      1086    0.0     3       982 79 14 11
+42      991     0.0     3       908 62 16 5
+43      932     0.0     3       856 47 14 15
+44      849     0.0     3       786 45 11 7
+45      710     0.0     3       637 48 17 8
+46      640     0.0     3       579 46 8 7
+47      653     0.0     3       596 34 13 10
+48      628     0.0     3       558 36 18 16
+49      534     0.0     3       475 42 8 9
+50      524     0.0     3       479 25 11 9
+51      444     0.0     3       409 18 10 7
+52      356     0.0     3       313 25 9 9
+53      332     0.0     3       283 31 12 6
+54      323     0.0     3       279 28 11 5
+55      290     0.0     3       245 31 11 3
+56      252     0.0     3       214 26 9 3
+57      252     0.0     3       218 19 6 9
+58      221     0.0     3       195 17 7 2
+59      208     0.0     3       173 21 9 5
+60      197     0.0     3       169 11 9 8
+61      158     0.0     3       133 15 5 5
+62      150     0.0     3       123 15 5 7
+63      130     0.0     3       115 4 6 5
+64      127     0.0     3       107 8 7 5
+65      124     0.0     3       93 19 5 7
+66      103     0.0     3       86 8 1 8
+67      86      0.0     3       68 8 7 3
+68      86      0.0     3       64 10 7 5
+69      69      0.0     3       53 4 8 4
+70      69      0.0     3       51 6 5 7
+71      47      0.0     3       35 7 0 5
+72      48      0.0     3       36 4 3 5
+73      47      0.0     3       30 7 5 5
+74      35      0.0     3       29 2 2 2
+75      29      0.0     3       16 7 3 3
+76      30      0.0     3       18 6 1 5
+77      33      0.0     3       20 8 2 3
+78      19      0.0     3       13 2 3 1
+79      18      0.0     3       15 2 0 1
+80      6       0.0     3       4 2
+81      10      0.0     3       8 0 1 1
+82      13      0.0     3       10 2 0 1
+83      11      0.0     3       7 2 1 1
+84      10      0.0     3       7 1 0 2
+85      10      0.0     3       8 1 0 1
+86      5       0.0     3       4 1
+87      9       0.0     3       6 3
+88      4       0.0     3       3 1
+89      4       0.0     3       4
+90      4       0.0     3       4
+91      8       0.0     3       6 1 0 1
+92      2       0.0     3       2
+93      3       0.0     3       2 1
+94      2       0.0     3       1 1
+96      6       0.0     3       5 0 1
+97      3       0.0     3       1 1 1
+98      2       0.0     3       1 1
+99      3       0.0     3       2 1
+101     3690    0.0     3       3 3253 378 56
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To test the adapters had been removed: 
+```
+grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" 11_2H_both_S9_L008_cut_R1.fastq 
+grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" 11_2H_both_S9_L008_cut_R2.fastq 
+grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" 11_2H_both_S9_L008_cut_R2.fastq 
+grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" 11_2H_both_S9_L008_cut_R1.fastq 
+```
+All returned 0! :)
+
+Next to cut adapt for 29_4E_fox_S21_L008 read pairs:
+```
+mkdir cut
+cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT -o /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq -p /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R1_001.fastq.gz /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R2_001.fastq.gz
+```
+Out put located at: /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut
+OUTPUT:
+Processing paired-end reads on 1 core ...
+Done           00:00:30     4,827,433 reads @   6.3 µs/read;   9.60 M reads/minute
+Finished in 30.183 s (6.252 µs/read; 9.60 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:          4,827,433
+  Read 1 with adapter:                 361,886 (7.5%)
+  Read 2 with adapter:                 400,819 (8.3%)
+Pairs written (passing filters):     4,827,433 (100.0%)
+
+Total basepairs processed:   975,141,466 bp
+  Read 1:   487,570,733 bp
+  Read 2:   487,570,733 bp
+Total written (filtered):    963,930,893 bp (98.9%)
+  Read 1:   482,046,570 bp
+  Read 2:   481,884,323 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA; Type: regular 3'; Length: 33; Trimmed: 361886 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 14.8%
+  C: 27.0%
+  G: 42.5%
+  T: 15.3%
+  none/other: 0.4%
+
+Overview of removed sequences
+length  count   expect  max.err error counts
+3       91906   75428.6 0       91906
+4       26913   18857.2 0       26913
+5       13735   4714.3  0       13735
+6       9742    1178.6  0       9742
+7       9377    294.6   0       9377
+8       8970    73.7    0       8970
+9       9016    18.4    0       8897 119
+10      8908    4.6     1       8590 318
+11      8578    1.2     1       8333 245
+12      8332    0.3     1       8103 229
+13      8363    0.1     1       8139 224
+14      7947    0.0     1       7697 250
+15      7840    0.0     1       7615 225
+16      7688    0.0     1       7469 219
+17      7329    0.0     1       7063 266
+18      7232    0.0     1       6974 252 6
+19      7001    0.0     1       6754 241 6
+20      6733    0.0     2       6465 235 33
+21      6464    0.0     2       6220 217 27
+22      6387    0.0     2       6131 226 30
+23      5960    0.0     2       5700 223 37
+24      5954    0.0     2       5659 267 28
+25      5802    0.0     2       5539 224 39
+26      5217    0.0     2       4940 236 41
+27      5184    0.0     2       4929 220 32 3
+28      4870    0.0     2       4604 223 42 1
+29      4675    0.0     2       4422 226 26 1
+30      4459    0.0     3       4193 222 29 15
+31      4209    0.0     3       3954 217 27 11
+32      3869    0.0     3       3643 181 36 9
+33      3530    0.0     3       3331 161 27 11
+34      3540    0.0     3       3339 168 26 7
+35      3173    0.0     3       3008 127 28 10
+36      2962    0.0     3       2792 155 11 4
+37      2804    0.0     3       2657 125 19 3
+38      2591    0.0     3       2469 105 11 6
+39      2324    0.0     3       2202 100 17 5
+40      2197    0.0     3       2073 104 15 5
+41      1974    0.0     3       1869 82 19 4
+42      1882    0.0     3       1779 86 14 3
+43      1545    0.0     3       1473 63 6 3
+44      1369    0.0     3       1305 55 9
+45      1323    0.0     3       1251 60 10 2
+46      1118    0.0     3       1073 35 6 4
+47      1079    0.0     3       1042 34 3
+48      970     0.0     3       925 39 4 2
+49      839     0.0     3       790 43 1 5
+50      785     0.0     3       740 39 5 1
+51      644     0.0     3       608 29 3 4
+52      579     0.0     3       548 28 3
+53      552     0.0     3       525 22 5
+54      442     0.0     3       424 17 1
+55      392     0.0     3       369 19 2 2
+56      354     0.0     3       340 10 2 2
+57      300     0.0     3       286 13 0 1
+58      281     0.0     3       273 7 1
+59      248     0.0     3       235 11 0 2
+60      269     0.0     3       257 11 1
+61      213     0.0     3       201 11 1
+62      192     0.0     3       184 6 1 1
+63      156     0.0     3       147 8 1
+64      136     0.0     3       125 9 0 2
+65      139     0.0     3       136 3
+66      114     0.0     3       106 7 1
+67      108     0.0     3       105 3
+68      95      0.0     3       90 4 1
+69      107     0.0     3       106 1
+70      79      0.0     3       74 4 1
+71      65      0.0     3       62 3
+72      62      0.0     3       58 3 1
+73      57      0.0     3       55 0 1 1
+74      48      0.0     3       45 1 2
+75      30      0.0     3       27 3
+76      28      0.0     3       27 0 0 1
+77      20      0.0     3       18 0 2
+78      17      0.0     3       15 2
+79      13      0.0     3       13
+80      9       0.0     3       9
+81      9       0.0     3       9
+82      11      0.0     3       10 1
+83      8       0.0     3       7 1
+84      4       0.0     3       4
+85      11      0.0     3       11
+86      6       0.0     3       6
+87      7       0.0     3       7
+88      7       0.0     3       7
+89      8       0.0     3       7 0 1
+90      4       0.0     3       4
+91      5       0.0     3       5
+92      1       0.0     3       1
+93      2       0.0     3       1 0 1
+94      5       0.0     3       5
+95      3       0.0     3       2 1
+96      4       0.0     3       4
+97      8       0.0     3       8
+98      6       0.0     3       5 1
+99      3       0.0     3       3
+100     5       0.0     3       5
+101     1355    0.0     3       3 1093 244 15
+
+
+=== Second read: Adapter 2 ===
+
+Sequence: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT; Type: regular 3'; Length: 33; Trimmed: 400819 times
+
+Minimum overlap: 3
+No. of allowed errors:
+1-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 16.5%
+  C: 27.7%
+  G: 46.5%
+  T: 8.9%
+  none/other: 0.3%
+
+Overview of removed sequences
+length  count   expect  max.err error counts
+3       122913  75428.6 0       122913
+4       31646   18857.2 0       31646
+5       14723   4714.3  0       14723
+6       10333   1178.6  0       10333
+7       9522    294.6   0       9522
+8       9018    73.7    0       9018
+9       9103    18.4    0       8941 162
+10      8995    4.6     1       8682 313
+11      8715    1.2     1       8426 289
+12      8403    0.3     1       8198 205
+13      8396    0.1     1       8203 193
+14      7985    0.0     1       7823 162
+15      7896    0.0     1       7659 237
+16      7740    0.0     1       7577 163
+17      7351    0.0     1       7145 206
+18      7245    0.0     1       6996 249
+19      7019    0.0     1       6802 214 3
+20      6764    0.0     2       6500 235 29
+21      6469    0.0     2       6233 213 23
+22      6423    0.0     2       6205 193 25
+23      6001    0.0     2       5765 210 26
+24      5970    0.0     2       5705 240 25
+25      5839    0.0     2       5571 242 26
+26      5236    0.0     2       4991 221 24
+27      5207    0.0     2       4966 204 34 3
+28      4910    0.0     2       4649 224 37
+29      4709    0.0     2       4452 205 45 7
+30      4477    0.0     3       4250 187 31 9
+31      4218    0.0     3       3961 219 30 8
+32      3888    0.0     3       3661 184 36 7
+33      3566    0.0     3       3344 171 36 15
+34      3558    0.0     3       3362 155 31 10
+35      3186    0.0     3       2984 162 28 12
+36      2972    0.0     3       2834 114 17 7
+37      2813    0.0     3       2650 130 25 8
+38      2611    0.0     3       2454 114 19 24
+39      2332    0.0     3       2189 124 13 6
+40      2209    0.0     3       2103 81 19 6
+41      1991    0.0     3       1899 75 8 9
+42      1885    0.0     3       1783 71 23 8
+43      1558    0.0     3       1476 70 7 5
+44      1378    0.0     3       1311 53 9 5
+45      1333    0.0     3       1269 50 8 6
+46      1137    0.0     3       1082 45 5 5
+47      1080    0.0     3       1034 39 4 3
+48      987     0.0     3       939 34 8 6
+49      848     0.0     3       807 33 4 4
+50      793     0.0     3       749 37 4 3
+51      652     0.0     3       613 31 5 3
+52      594     0.0     3       562 21 3 8
+53      565     0.0     3       520 35 5 5
+54      457     0.0     3       422 24 9 2
+55      406     0.0     3       373 26 6 1
+56      362     0.0     3       344 12 4 2
+57      313     0.0     3       288 16 5 4
+58      291     0.0     3       273 12 4 2
+59      256     0.0     3       236 15 2 3
+60      280     0.0     3       261 13 5 1
+61      220     0.0     3       203 13 3 1
+62      202     0.0     3       196 5 0 1
+63      168     0.0     3       152 11 2 3
+64      146     0.0     3       135 8 0 3
+65      146     0.0     3       138 6 1 1
+66      120     0.0     3       112 5 1 2
+67      114     0.0     3       105 4 4 1
+68      104     0.0     3       94 4 3 3
+69      113     0.0     3       107 4 2
+70      88      0.0     3       79 6 2 1
+71      76      0.0     3       68 4 3 1
+72      74      0.0     3       66 5 2 1
+73      62      0.0     3       54 4 3 1
+74      55      0.0     3       44 8 1 2
+75      40      0.0     3       34 1 3 2
+76      32      0.0     3       27 2 2 1
+77      23      0.0     3       20 2 0 1
+78      19      0.0     3       18 0 1
+79      14      0.0     3       13 0 0 1
+80      11      0.0     3       10 1
+81      10      0.0     3       10
+82      13      0.0     3       10 2 0 1
+83      9       0.0     3       9
+84      4       0.0     3       4
+85      11      0.0     3       11
+86      8       0.0     3       4 2 2
+87      7       0.0     3       7
+88      7       0.0     3       6 1
+89      8       0.0     3       8
+90      5       0.0     3       3 2
+91      5       0.0     3       2 2 1
+92      1       0.0     3       1
+93      2       0.0     3       2
+94      5       0.0     3       2 2 1
+95      3       0.0     3       2 1
+96      4       0.0     3       1 3
+97      8       0.0     3       6 2
+98      7       0.0     3       3 2 1 1
+99      3       0.0     3       2 1
+100     5       0.0     3       0 1 4
+101     1340    0.0     3       0 1091 227 22
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I check these the same was as above with grep -c for the adapters:
+These returned 0 ****NOTE:  If you choose a portion of the adapter you will find contamination to a certain degree, but for this assignment it is okay to continue*****
+
+After this we moved on to using trimmomatic with parameters:
+    - LEADING:3 (quality)
+    - TRAILING:3 (quality)
+    - SLIDINGWINDOW:5:15 (window size 5, required quality of 15)
+    - MINLEN:35      (bases)
+
+I ran trimmomatic in the same "cut" folders
+For 11_2H_both_S9_L008
+```
+trimmomatic PE -phred33 /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_cut_R1.fastq /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_cut_R2.fastq /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimU.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimU.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35 
+```
+output:
+Input Read Pairs: 280270 Both Surviving: 271639 (96.92%) Forward Only Surviving: 8293 (2.96%) Reverse Only Surviving: 212 (0.08%) Dropped: 126 (0.04%)
+TrimmomaticPE: Completed successfully
+
+For 29_4E_fox_S21_L008:
+```
+trimmomatic PE -phred33 /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq_trimU.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq_trimU.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35
+```
+output:
+Input Read Pairs: 4827433 Both Surviving: 4571904 (94.71%) Forward Only Surviving: 247896 (5.14%) Reverse Only Surviving: 3367 (0.07%) Dropped: 4266 (0.09%)
+TrimmomaticPE: Completed successfully
+
+In order to plot the distribution of the trimmed read lengths, I wrote a script called ReadPairLenHist.py located 
+```
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/ReadPairLenHist.py
+```
+I called the script like so:
+```
+./ReadPairLenHist.py -r1 /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimP.fastq.gz -r2 /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimP.fastq.gz -o 11_2H_both_S9_L008_Trimmed_Reads
+./ReadPairLenHist.py -r1 /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq_trimP.fastq.gz -r2 /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq_trimP.fastq.gz -o 29_4E_fox_S21_L008_Trimmed_Reads
+```
+output for 11:
+```
+ User time (seconds): 2.06
+        System time (seconds): 0.08
+        Percent of CPU this job got: 99%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.16
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 60604
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 13553
+        Voluntary context switches: 77
+        Involuntary context switches: 6
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+```
+output for 29:
+```
+ User time (seconds): 23.15
+        System time (seconds): 0.25
+        Percent of CPU this job got: 99%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:23.47
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 60712
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 13578
+        Voluntary context switches: 76
+        Involuntary context switches: 64
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+```
+The graphs are located in the same folder as the python script /QAA, and you can see that there are many more reads for R1 in both cases than R2. I believe this is due to the fact that R2 overall has lesser quality reads meaning that more will be cut differently and then after trimmomatic sent to the unpaired files resulting in less reads that are output. 
+
+
+For Part 3:
+To my QAA environment I installed:
+```
+conda install star
+conda install numpy
+conda install matplotlib
+conda install htseq
+```
+star version 2.7.10b
+numpy version 1.25.2
+matplotlib version 3.7.2
+htseq version 2.0.3
+
+I made a directory under QAA/part_3 to upload the proper files from ensemble to align to the mouse genome:
+```
+wget "https://ftp.ensembl.org/pub/release-110/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz"
+wget "https://ftp.ensembl.org/pub/release-110/gtf/mus_musculus/Mus_musculus.GRCm39.110.gtf.gz"
+```
+I also dropped a copy of my script genomegenstar.sh to this same folder and updated it so I don't have to hardcode.
+I updated it with the proper file paths since they are hard coded.
+For gene 11_2H_both_S9_L008 located under /QAA/part3/11/:
+```
+sbatch ./genomegenstar.sh /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/ Mus_musculus.GRCm39.dna.primary_assembly.fa Mus_musculus.GRCm39.110.gtf 
+```
+Submitted batch job 56042
+
+For gene 29_4E_fox_S21_L008 I made a folder under /QAA/part3/29/:
+```
+sbatch ../genomegenstar.sh /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R1.fastq_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/29_4E_fox_S21_L008_pair_sbatch/cut/29_4E_fox_S21_L008_cut_R2.fastq_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29 /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf
+```
+Submitted batch job 56043
+
+****These commands reflect how I ran them before I realized I need to split up the two parts of my genomegenstar.sh into the genomegenerate part and then the star alignment part!****
+  So then I have two both under /part_3/ 
+    genomegen.sh
+    star_align.sh
+  So I reorganized to throw the mouse genome output into this folder: /projects/bgmp/dovee/bioinfo/genome/mouse/
+  Then I made a folder 11 for the output of job 56042
+  I also put the fasta and gft files for the mouse version ensembl 110 into the same folder as the genome that was created
+
+I couldn't find my python script in Bi621/ps8 for parsing through the sam files to count the mapped and unmapped reads so I went to github and just copied the code into a new script located here:
+under /QAA/part_3 I added my script from github:
+parseSAM.py 
+Then I ran it on 29:
+```
+./parseSAM.py -f /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29/alignedAligned.out.sam
+mapped reads: 8883008 unmapped reads: 260800
+```
+on 11
+```
+./parseSAM.py -f /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/11/alignedAligned.out.sam
+mapped reads: 523249 unmapped reads: 20029
+```
+
+Next I created a slurm script to run both of the gene aligned.out.sam files with htseq-count
+also located in /QAA/part_3/
+
+I ran it with 11 being the first file and 29 being the second file options
+```
+sbatch ./htseq-count.sh /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/11/alignedAligned.out.sam /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29/alignedAligned.out.sam /projects/bgmp/dovee/bioinfo/genome/mouse/fasta_and_gtf/Mus_musculus.GRCm39.110.gtf 11 29
+Submitted batch job 57756
+```
+This showed exit status 0 for all four lines of code in the sbatch with files, 11.tsv, 11_rev.tsv, 29.tsv, and 29_rev.tsv being output with the counts for each read that aligned to a different gene. 
+Now to determine whether these libraries were stranded or not, on the command line I:
+Sum only reads which mapped to a specific gene:
+```
+awk '$1~"ENSMUS" {sum+=$2} END {print sum}' 11.tsv      # 9174
+awk '$1~"ENSMUS" {sum+=$2} END {print sum}' 11_rev.tsv  # 215315
+awk '$1~"ENSMUS" {sum+=$2} END {print sum}' 29.tsv      # 185940
+awk '$1~"ENSMUS" {sum+=$2} END {print sum}' 29_rev.tsv  # 3859931 
+```
+For total number of reads:
+```
+awk '{sum+=$2} END {print sum}' 11.tsv        # 271639
+awk '{sum+=$2} END {print sum}' 11_rev.tsv    # 271639
+awk '{sum+=$2} END {print sum}' 29.tsv        # 4571904
+awk '{sum+=$2} END {print sum}' 29_rev.tsv    # 4571904
+```
+
+Now I math to find the percentages of actual mapped reads to genes for each read and compare the forward to reverse options:
+
+(9174/271639)*100 = 3.38% for 11_2H_both_S9_L008  (forward)
+(9174/271639)*100 = 79.27% for 11_2H_both_S9_L008  (reverse)
+(185940/4571904)*100 = 4.07% for 29_4E_fox_S21_L008 (forward)
+(3859931/4571904)*100 = 84.43% for 29_4E_fox_S21_L008 (Reverse)
+
+These numbers would indicate that these libraries were prepared in a stranded specific matter as ~80% mapped for reverse compared to ~4% is a drastic difference.
+We would want to not loose all these data by choosing the wrong option for htseq count, which in this case the reverse option for strandedness is critical. 

@@ -1,0 +1,23 @@
+	/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2 --runMode genomeGenerate --runThreadN 8 --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/ --genomeFastaFiles Mus_musculus.GRCm39.dna.primary_assembly.fa --sjdbGTFfile Mus_musculus.GRCm39.110.gtf
+	STAR version: 2.7.10b   compiled: 2023-05-25T06:56:23+0000 :/opt/conda/conda-bld/star_1684997536154/work/source
+Sep 11 15:19:15 ..... started STAR run
+Sep 11 15:19:15 ... starting to generate Genome files
+Sep 11 15:19:52 ..... processing annotations GTF
+Sep 11 15:20:12 ... starting to sort Suffix Array. This may take a long time...
+Sep 11 15:20:22 ... sorting Suffix Array chunks and saving them to disk...
+Sep 11 15:29:17 ... loading chunks from disk, packing SA...
+Sep 11 15:31:54 ... finished generating suffix array
+Sep 11 15:31:54 ... generating Suffix Array index
+Sep 11 15:34:12 ... completed Suffix Array index
+Sep 11 15:34:12 ..... inserting junctions into the genome indices
+Sep 11 15:36:34 ... writing Genome to disk ...
+Sep 11 15:36:35 ... writing Suffix Array to disk ...
+Sep 11 15:36:47 ... writing SAindex to disk
+Sep 11 15:36:49 ..... finished successfully
+	/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2 --runThreadN 8 --runMode alignReads --outFilterMultimapNmax 3 --outSAMunmapped Within KeepPairs --alignIntronMax 1000000 --alignMatesGapMax 1000000 --readFilesCommand zcat --readFilesIn /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimP.fastq.gz --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/ --outFileNamePrefix aligned
+	STAR version: 2.7.10b   compiled: 2023-05-25T06:56:23+0000 :/opt/conda/conda-bld/star_1684997536154/work/source
+Sep 11 15:36:49 ..... started STAR run
+Sep 11 15:36:49 ..... loading genome
+Sep 11 15:37:05 ..... started mapping
+Sep 11 15:37:09 ..... finished mapping
+Sep 11 15:37:09 ..... finished successfully

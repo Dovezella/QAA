@@ -1,0 +1,224 @@
+STAR version=2.7.10b
+STAR compilation time,server,dir=2023-05-25T06:56:23+0000 :/opt/conda/conda-bld/star_1684997536154/work/source
+##### Command Line:
+/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2 --runMode genomeGenerate --runThreadN 8 --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29 --genomeFastaFiles /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa --sjdbGTFfile /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+runMode                       genomeGenerate        ~RE-DEFINED
+runThreadN                    8     ~RE-DEFINED
+genomeDir                     /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29     ~RE-DEFINED
+genomeFastaFiles              /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa        ~RE-DEFINED
+sjdbGTFfile                   /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           genomeGenerate   
+runThreadN                        8
+genomeDir                         /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29
+genomeFastaFiles                  /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa   
+sjdbGTFfile                       /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf
+
+-------------------------------
+##### Final effective command line:
+/projects/bgmp/dovee/miniconda3/envs/QAA/bin/STAR-avx2   --runMode genomeGenerate      --runThreadN 8   --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29   --genomeFastaFiles /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa      --sjdbGTFfile /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf
+----------------------------------------
+
+Number of fastq files for each mate = 1
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+--genomeDir directory exists and will be overwritten: /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29/
+Sep 11 15:19:48 ... starting to generate Genome files
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 0  "1" chrStart: 0
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 1  "10" chrStart: 195297280
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 2  "11" chrStart: 325844992
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 3  "12" chrStart: 448004096
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 4  "13" chrStart: 568328192
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 5  "14" chrStart: 689438720
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 6  "15" chrStart: 814743552
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 7  "16" chrStart: 919076864
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 8  "17" chrStart: 1017118720
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 9  "18" chrStart: 1112539136
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 10  "19" chrStart: 1203503104
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 11  "2" chrStart: 1265106944
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 12  "3" chrStart: 1447034880
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 13  "4" chrStart: 1606942720
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 14  "5" chrStart: 1763966976
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 15  "6" chrStart: 1915748352
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 16  "7" chrStart: 2065432576
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 17  "8" chrStart: 2210660352
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 18  "9" chrStart: 2340945920
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 19  "MT" chrStart: 2465464320
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 20  "X" chrStart: 2465726464
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 21  "Y" chrStart: 2635333632
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 22  "JH584299.1" chrStart: 2726821888
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 23  "GL456233.2" chrStart: 2727870464
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 24  "JH584301.1" chrStart: 2728656896
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 25  "GL456211.1" chrStart: 2728919040
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 26  "GL456221.1" chrStart: 2729181184
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 27  "JH584297.1" chrStart: 2729443328
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 28  "JH584296.1" chrStart: 2729705472
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 29  "GL456354.1" chrStart: 2729967616
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 30  "JH584298.1" chrStart: 2730229760
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 31  "JH584300.1" chrStart: 2730491904
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 32  "GL456219.1" chrStart: 2730754048
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 33  "GL456210.1" chrStart: 2731016192
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 34  "JH584303.1" chrStart: 2731278336
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 35  "JH584302.1" chrStart: 2731540480
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 36  "GL456212.1" chrStart: 2731802624
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 37  "JH584304.1" chrStart: 2732064768
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 38  "GL456379.1" chrStart: 2732326912
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 39  "GL456366.1" chrStart: 2732589056
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 40  "GL456367.1" chrStart: 2732851200
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 41  "GL456239.1" chrStart: 2733113344
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 42  "GL456383.1" chrStart: 2733375488
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 43  "GL456385.1" chrStart: 2733637632
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 44  "GL456360.1" chrStart: 2733899776
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 45  "GL456378.1" chrStart: 2734161920
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 46  "MU069435.1" chrStart: 2734424064
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 47  "GL456389.1" chrStart: 2734686208
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 48  "GL456372.1" chrStart: 2734948352
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 49  "GL456370.1" chrStart: 2735210496
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 50  "GL456381.1" chrStart: 2735472640
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 51  "GL456387.1" chrStart: 2735734784
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 52  "GL456390.1" chrStart: 2735996928
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 53  "GL456394.1" chrStart: 2736259072
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 54  "GL456392.1" chrStart: 2736521216
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 55  "GL456382.1" chrStart: 2736783360
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 56  "GL456359.1" chrStart: 2737045504
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 57  "GL456396.1" chrStart: 2737307648
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 58  "GL456368.1" chrStart: 2737569792
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 59  "MU069434.1" chrStart: 2737831936
+/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.dna.primary_assembly.fa : chr # 60  "JH584295.1" chrStart: 2738094080
+Chromosome sequence lengths: 
+1	195154279
+10	130530862
+11	121973369
+12	120092757
+13	120883175
+14	125139656
+15	104073951
+16	98008968
+17	95294699
+18	90720763
+19	61420004
+2	181755017
+3	159745316
+4	156860686
+5	151758149
+6	149588044
+7	144995196
+8	130127694
+9	124359700
+MT	16299
+X	169476592
+Y	91455967
+JH584299.1	953012
+GL456233.2	559103
+JH584301.1	259875
+GL456211.1	241735
+GL456221.1	206961
+JH584297.1	205776
+JH584296.1	199368
+GL456354.1	195993
+JH584298.1	184189
+JH584300.1	182347
+GL456219.1	175968
+GL456210.1	169725
+JH584303.1	158099
+JH584302.1	155838
+GL456212.1	153618
+JH584304.1	114452
+GL456379.1	72385
+GL456366.1	47073
+GL456367.1	42057
+GL456239.1	40056
+GL456383.1	38659
+GL456385.1	35240
+GL456360.1	31704
+GL456378.1	31602
+MU069435.1	31129
+GL456389.1	28772
+GL456372.1	28664
+GL456370.1	26764
+GL456381.1	25871
+GL456387.1	24685
+GL456390.1	24668
+GL456394.1	24323
+GL456392.1	23629
+GL456382.1	23158
+GL456359.1	22974
+GL456396.1	21240
+GL456368.1	20208
+MU069434.1	8412
+JH584295.1	1976
+Genome sequence total length = 2728222451
+Genome size with padding = 2738356224
+Sep 11 15:20:25 ..... processing annotations GTF
+Processing pGe.sjdbGTFfile=/projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/Mus_musculus.GRCm39.110.gtf, found:
+		149547 transcripts
+		869452 exons (non-collapsed)
+		290117 collapsed junctions
+Total junctions: 290117
+Sep 11 15:20:32 ..... finished GTF processing
+
+Estimated genome size with padding and SJs: total=genome+SJ=2939356224 = 2738356224 + 201000000
+GstrandBit=32
+Number of SA indices: 5309243566
+Sep 11 15:20:45 ... starting to sort Suffix Array. This may take a long time...
+Number of chunks: 24;   chunks size limit: 1914246544 bytes
+Sep 11 15:20:54 ... sorting Suffix Array chunks and saving them to disk...
+Writing 1761388056 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_1 ; empty space on disk = 1432993382006784 bytes ... done
+Writing 1735971512 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_3 ; empty space on disk = 1432991616204800 bytes ... done
+Writing 1854034976 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_0 ; empty space on disk = 1432989875568640 bytes ... done
+Writing 1832467656 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_2 ; empty space on disk = 1432988017491968 bytes ... done
+Writing 1868710672 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_4 ; empty space on disk = 1432986180386816 bytes ...Writing 1790148352 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_6 ; empty space on disk = 1432986176192512 bytes ... done
+ done
+Writing 1836071784 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_5 ; empty space on disk = 1432982518759424 bytes ... done
+Writing 1881135680 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_7 ; empty space on disk = 1432961161363456 bytes ... done
+Writing 1787061616 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_9 ; empty space on disk = 1432933030166528 bytes ... done
+Writing 1773261472 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_8 ; empty space on disk = 1432931239198720 bytes ...Writing 1738304216 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_10 ; empty space on disk = 1432931138535424 bytes ... done
+ done
+Writing 1826940776 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_11 ; empty space on disk = 1432927715983360 bytes ... done
+Writing 1882586808 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_14 ; empty space on disk = 1432913719590912 bytes ... done
+Writing 1882992120 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_13 ; empty space on disk = 1432911832154112 bytes ... done
+Writing 1869480048 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_12 ; empty space on disk = 1432909944717312 bytes ... done
+Writing 1881806984 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_15 ; empty space on disk = 1432908074057728 bytes ... done
+Writing 801751320 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_23 ; empty space on disk = 1432922909310976 bytes ... done
+Writing 1581660584 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_21 ; empty space on disk = 1432916634632192 bytes ... done
+Writing 1843649328 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_18 ; empty space on disk = 1432915049185280 bytes ... done
+Writing 1775408048 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_19 ; empty space on disk = 1432913199497216 bytes ... done
+Writing 1887742128 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_16 ; empty space on disk = 1432911421112320 bytes ...Writing 1910082552 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_17 ; empty space on disk = 1432910724857856 bytes ...Writing 1707621360 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_20 ; empty space on disk = 1432908799672320 bytes ... done
+ done
+ done
+Writing 1763670480 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA_22 ; empty space on disk = 1432905901408256 bytes ... done
+Sep 11 15:29:48 ... loading chunks from disk, packing SA...
+Sep 11 15:30:46 ... finished generating suffix array
+Sep 11 15:30:46 ... generating Suffix Array index
+Sep 11 15:33:05 ... completed Suffix Array index
+WARNING: long repeat for junction # 65800 : 13 36192501 36373186; left shift = 255; right shift = 29
+WARNING: long repeat for junction # 73529 : 13 119631671 120070727; left shift = 36; right shift = 255
+WARNING: long repeat for junction # 90246 : 15 75976552 75988902; left shift = 0; right shift = 255
+WARNING: long repeat for junction # 200693 : 5 112922393 112922883; left shift = 255; right shift = 69
+WARNING: long repeat for junction # 203097 : 5 123328298 123329023; left shift = 255; right shift = 19
+WARNING: long repeat for junction # 212365 : 6 48731569 48732130; left shift = 81; right shift = 255
+WARNING: long repeat for junction # 244686 : 7 141361933 141364041; left shift = 255; right shift = 255
+Sep 11 15:33:05   Finished preparing junctions
+Sep 11 15:33:05 ..... inserting junctions into the genome indices
+Sep 11 15:33:46   Finished SA search: number of new junctions=290071, old junctions=0
+Sep 11 15:34:17   Finished sorting SA indicesL nInd=116028358
+Genome size with junctions=2796660495  2738356224   58304271
+GstrandBit1=32   GstrandBit=32
+Sep 11 15:35:12   Finished inserting junction indices
+Sep 11 15:35:28   Finished SAi
+Sep 11 15:35:28 ..... finished inserting junctions into genome
+Sep 11 15:35:28 ... writing Genome to disk ...
+Writing 2796660495 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//Genome ; empty space on disk = 1432919365124096 bytes ... done
+SA size in bytes: 22379246690
+Sep 11 15:35:29 ... writing Suffix Array to disk ...
+Writing 22379246690 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SA ; empty space on disk = 1432916563329024 bytes ... done
+Sep 11 15:35:41 ... writing SAindex to disk
+Writing 8 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SAindex ; empty space on disk = 1432894182522880 bytes ... done
+Writing 120 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SAindex ; empty space on disk = 1432894182522880 bytes ... done
+Writing 1565873491 bytes into /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/29//SAindex ; empty space on disk = 1432894182522880 bytes ... done
+Sep 11 15:35:42 ..... finished successfully
+DONE: Genome generation, EXITING

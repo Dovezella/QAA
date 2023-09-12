@@ -1,0 +1,49 @@
+Run 'mamba init' to be able to run mamba activate/deactivate
+and start a new shell session. Or use conda to activate/deactivate.
+
+	Command being timed: "STAR --runMode genomeGenerate --runThreadN 8 --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/ --genomeFastaFiles Mus_musculus.GRCm39.dna.primary_assembly.fa --sjdbGTFfile Mus_musculus.GRCm39.110.gtf"
+	User time (seconds): 4772.32
+	System time (seconds): 53.11
+	Percent of CPU this job got: 458%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 17:33.58
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 32381056
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 22996268
+	Voluntary context switches: 19421
+	Involuntary context switches: 12356
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+	Command being timed: "STAR --runThreadN 8 --runMode alignReads --outFilterMultimapNmax 3 --outSAMunmapped Within KeepPairs --alignIntronMax 1000000 --alignMatesGapMax 1000000 --readFilesCommand zcat --readFilesIn /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R1_trimP.fastq.gz /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut/11_2H_both_S9_L008_R2_trimP.fastq.gz --genomeDir /projects/bgmp/dovee/bioinfo/Bi623/QAA/part_3/ --outFileNamePrefix aligned"
+	User time (seconds): 13.10
+	System time (seconds): 7.21
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 27112408
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 96530
+	Voluntary context switches: 3816
+	Involuntary context switches: 73
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
