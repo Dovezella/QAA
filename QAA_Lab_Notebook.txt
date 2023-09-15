@@ -142,6 +142,20 @@ in order to use cutadapt on my files with adapters:
     
     R2: ```AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT```
 
+
+I checked my files for the presence of these adpaters with the following code:
+```
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R1_001.fastq.gz | grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" #23629
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R1_001.fastq.gz | grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" #0
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R2_001.fastq.gz | grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" #24496
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/11_2H_both_S9_L008_R2_001.fastq.gz | grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" #0
+
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R1_001.fastq.gz | grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"  #39701
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R2_001.fastq.gz | grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" #39929
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R1_001.fastq.gz | grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" #0
+zcat /projects/bgmp/shared/2017_sequencing/demultiplexed/29_4E_fox_S21_L008_R2_001.fastq.gz | grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" #0
+```
+This shows that adapter "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA" was used for Reads 1, while "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" was used with Reads 2.
 For 11_2H_both_S9_L008 read pairs, I made a directory for the output @ :
 /projects/bgmp/dovee/bioinfo/Bi623/QAA/11_2H_both_S9_L008_pair_sbatch/cut
 ```
@@ -754,7 +768,8 @@ output for 29:
         Page size (bytes): 4096
         Exit status: 0
 ```
-The graphs are located in the same folder as the python script /QAA, and you can see that there are many more reads for R1 in both cases than R2. I believe this is due to the fact that R2 overall has lesser quality reads meaning that more will be cut differently and then after trimmomatic sent to the unpaired files resulting in less reads that are output. 
+The graphs are located in the same folder as the python script /QAA, and you can see that there are many more short reads for R2 in both cases than R1. I believe this is due to the fact that R2 overall has lesser quality reads meaning that more will be cut differently due to unknown base calls resulting in a broader range of shorter reads than in the higher quality R1 reads, which are mostly the expected length of 101 bp. 
+Also due to a lower quality, trimmomatic would send more reads to the unpaired files resulting in less reads that are output as paired data.
 
 
 For Part 3:
